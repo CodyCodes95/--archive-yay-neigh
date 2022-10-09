@@ -2,9 +2,23 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import FormDescription from "../components/FormDescription";
 import { trpc } from "../utils/trpc";
+import React from "react";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
+
+  const [fullName, setFullName] = React.useState("");
+  const [cityState, setCityState] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [instagramName, setInstagramName] = React.useState("");
+  const [yearMakeModel, setYearMakeModel] = React.useState("");
+  const [engineMods, setEngineMods] = React.useState("");
+  const [suspensionMods, setSuspensionMods] = React.useState("");
+  const [exteriorMods, setExteriorMods] = React.useState("");
+  const [interiorMods, setInteriorMods] = React.useState("");
+  const [photosLink, setPhotosLink] = React.useState("");
+  const [photogUserName, setPhotogUsername] = React.useState("");
+  const [attachedImages, setAttachedImages] = React.useState([]);
 
   return (
     <>
@@ -16,71 +30,120 @@ const Home: NextPage = () => {
 
       <main className="mx-auto flex flex-col items-center justify-center min-h-screen w-full bg-black text-white">
         <div className="mt-10">
-        <h1 className="text-5xl">CH. IV: VEHICLE APPLICATION FORM</h1>
+          <h1 className="text-5xl">CH. IV: VEHICLE APPLICATION FORM</h1>
         </div>
         <div className="text-[#737373] w-[50%] px-[3.5rem] text-[15px] mt-10">
-        <FormDescription>Hey there! Thank you for your interest in displaying your vehicle at Status, CH. IV. We encourage you to clearly and sufficiently fill in all sections below in order to assist us in selecting a diverse and quality range of vehicles.</FormDescription>
-        <div className="p-6" />
+          <FormDescription>
+            Hey there! Thank you for your interest in displaying your vehicle at Status, CH. IV. We encourage you to
+            clearly and sufficiently fill in all sections below in order to assist us in selecting a diverse and quality
+            range of vehicles.
+          </FormDescription>
+          <div className="p-6" />
           <FormDescription>Before completing the application form, please read the information below:</FormDescription>
-        <div className="p-6" />
+          <div className="p-6" />
           <FormDescription>Event Date/Time: 10/12/22 from 3PM to 9PM</FormDescription>
           <FormDescription>Event Location: PICA, Port Melbourne</FormDescription>
-        <div className="p-6" />
-          <FormDescription>All vehicles participating in the show must undergo the selection process. We value quality over quantity and this process allows us to narrow the selection down to 150 vehicles for CH. IV. Our focus is to showcase stance, however, all build styles are welcome. Your vehicle must be presentable with genuine parts, we do not support replica parts!!!</FormDescription>
-        <div className="p-6" />
+          <div className="p-6" />
+          <FormDescription>
+            All vehicles participating in the show must undergo the selection process. We value quality over quantity
+            and this process allows us to narrow the selection down to 150 vehicles for CH. IV. Our focus is to showcase
+            stance, however, all build styles are welcome. Your vehicle must be presentable with genuine parts, we do
+            not support replica parts!!!
+          </FormDescription>
+          <div className="p-6" />
           <FormDescription>Status, CH. IV Vehicle Application Important Dates:</FormDescription>
           <FormDescription>04/09/22: Round 1 applications open</FormDescription>
-          <FormDescription>02/10/22: Round 1 application results sent out and round 2 applications open</FormDescription>
+          <FormDescription>
+            02/10/22: Round 1 application results sent out and round 2 applications open
+          </FormDescription>
           <FormDescription>06/11/22: Round 2 application results sent out</FormDescription>
           <FormDescription>27/11/22: Pending vehicles must be finalised and be given final outcome</FormDescription>
-        <div className="p-6" />
-          <FormDescription>*Please outline and clarify future mods that you plan on completing before the show in the appropriate section.</FormDescription>
-          <FormDescription>*Ensure that the email you provide is active and regularly checked as this is our preferred method of contact. </FormDescription>
-          <FormDescription>*If the section of the form does not apply to you, please put “N/A” in the box provided.</FormDescription>
-          <FormDescription>*When uploading photos of your vehicle either use the “link to HD photos” box or select “upload images” to manually select images from your device. Please ensure your images are clear and display your vehicle clearly from different angles. iPhone photos are acceptable.</FormDescription>
-        <div className="p-6" />
-          <FormDescription>Please don't hesitate to contact us via Facebook or Instagram if you have any questions or concerns!</FormDescription>
+          <div className="p-6" />
+          <FormDescription>
+            *Please outline and clarify future mods that you plan on completing before the show in the appropriate
+            section.
+          </FormDescription>
+          <FormDescription>
+            *Ensure that the email you provide is active and regularly checked as this is our preferred method of
+            contact.{" "}
+          </FormDescription>
+          <FormDescription>
+            *If the section of the form does not apply to you, please put “N/A” in the box provided.
+          </FormDescription>
+          <FormDescription>
+            *When uploading photos of your vehicle either use the “link to HD photos” box or select “upload images” to
+            manually select images from your device. Please ensure your images are clear and display your vehicle
+            clearly from different angles. iPhone photos are acceptable.
+          </FormDescription>
+          <div className="p-6" />
+          <FormDescription>
+            Please don't hesitate to contact us via Facebook or Instagram if you have any questions or concerns!
+          </FormDescription>
         </div>
       </main>
       <div className="mx-auto flex flex-col items-center justify-center min-h-screen w-full bg-black text-white">
-        <div className="flex flex-col w-[50%] justify-center items-center">
+        <div className="flex flex-col w-[50%] justify-center items-center ">
           <div className="flex">
             <div className="flex flex-col">
-            <label htmlFor="">Full Name*</label>
-              <input type="text" className="w-full" />
-              </div>
-              <div className="flex flex-col">
-            <label htmlFor="">City/State*</label>
-        <input type="text" />
-        </div>
-        </div>
-          <div className="flex">
+              <label className="" htmlFor="">
+                Full Name*
+              </label>
+              <input type="text" className="w-[85%]" />
+            </div>
             <div className="flex flex-col">
-            <label htmlFor="">Contact Email*</label>
-              <input type="text" className="w-full" />
-              </div>
-              <div className="flex flex-col">
-            <label htmlFor="">Instagram Username*</label>
-        <input type="text" />
-        </div>
-        </div>
-            <label htmlFor="">Vehicle Year/Make/Model*</label>
-        <input type="text" />
-            <label htmlFor="">Engine Modifications*</label>
-        <input type="text" />
-            <label htmlFor="">Suspension Modifications*</label>
-        <input type="text" />
-            <label htmlFor="">Exterior Modifications*</label>
-        <input type="text" />
-            <label htmlFor="">Interior Modifications*</label>
-        <input type="text" />
-            <label htmlFor="">Link to HD Photos*</label>
-        <input type="text" />
-            <label htmlFor="">Photographer Instagram Username*</label>
-        <input type="text" />
-        <input type="file" />
-          <button className="bg-white text-black w-full">Submit</button>
+              <label className="" htmlFor="">
+                City/State*
+              </label>
+              <input type="text" className="w-[85%]" />
+            </div>
           </div>
+          <div className="flex">
+            <div className="flex flex-col">
+              <label className="" htmlFor="">
+                Contact Email*
+              </label>
+              <input type="text" className="w-[85%]" />
+            </div>
+            <div className="flex flex-col">
+              <label className="" htmlFor="">
+                Instagram Username*
+              </label>
+              <input type="text" className="w-[85%]" />
+            </div>
+          </div>
+          <label className="p-2" htmlFor="">
+            Vehicle Year/Make/Model*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Engine Modifications*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Suspension Modifications*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Exterior Modifications*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Interior Modifications*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Link to HD Photos*
+          </label>
+          <input type="text" />
+          <label className="p-2" htmlFor="">
+            Photographer Instagram Username*
+          </label>
+          <input type="text" />
+          <input type="file" />
+          <div className="p-2" />
+          <button className="bg-white text-black w-[25%]">Submit</button>
+          <div className="p-2" />
+        </div>
       </div>
     </>
   );
