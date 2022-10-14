@@ -20,6 +20,31 @@ const Home: NextPage = () => {
   const [photogUserName, setPhotogUsername] = React.useState("");
   const [attachedImages, setAttachedImages] = React.useState([]);
 
+  const submitForm = async (endpoint:any) => {
+    const res = await fetch(endpoint, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        fullName,
+        cityState,
+        email,
+        instagramName,
+        yearMakeModel,
+        engineMods,
+        suspensionMods,
+        exteriorMods,
+        interiorMods,
+        photosLink,
+        photogUserName,
+        attachedImages,
+      }),
+    })
+    const data = await res.json()
+    return data
+    }
+
   return (
     <>
       <Head>
@@ -65,7 +90,7 @@ const Home: NextPage = () => {
           </FormDescription>
           <FormDescription>
             *Ensure that the email you provide is active and regularly checked as this is our preferred method of
-            contact.{" "}
+            contact.
           </FormDescription>
           <FormDescription>
             *If the section of the form does not apply to you, please put “N/A” in the box provided.
