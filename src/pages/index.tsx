@@ -3,10 +3,12 @@ import Head from "next/head";
 import FormDescription from "../components/FormDescription";
 import { trpc } from "../utils/trpc";
 import React from "react";
+import { useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
-
+  const session = useSession()
+  console.log(session)
   const [fullName, setFullName] = React.useState("");
   const [cityState, setCityState] = React.useState("");
   const [email, setEmail] = React.useState("");
