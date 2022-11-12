@@ -1,43 +1,45 @@
 import React from "react";
+import { trpc } from "../utils/trpc";
 
 const Form = () => {
-  const [fullName, setFullName] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("test");
+    const [postcode, setPostcode] = React.useState("test");
   const [cityState, setCityState] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [instagramName, setInstagramName] = React.useState("");
-  const [yearMakeModel, setYearMakeModel] = React.useState("");
+    const [yearMakeModel, setYearMakeModel] = React.useState("");
+    const [carMake, setCarMake] = React.useState("test");
+    const [carModel, setCarModel] = React.useState("test");
   const [engineMods, setEngineMods] = React.useState("");
   const [suspensionMods, setSuspensionMods] = React.useState("");
   const [exteriorMods, setExteriorMods] = React.useState("");
   const [interiorMods, setInteriorMods] = React.useState("");
-  const [photosLink, setPhotosLink] = React.useState("");
-  const [photogUserName, setPhotogUsername] = React.useState("");
+  const [linkToPhotos, setLinkToPhotos] = React.useState("");
+  const [photogUsername, setPhotogUsername] = React.useState("");
   const [attachedImages, setAttachedImages] = React.useState([]);
 
-  const submitForm = async (endpoint: any) => {
-    const res = await fetch(endpoint, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({
-        fullName,
-        cityState,
-        email,
-        instagramName,
-        yearMakeModel,
-        engineMods,
-        suspensionMods,
-        exteriorMods,
-        interiorMods,
-        photosLink,
-        photogUserName,
-        attachedImages,
-      }),
-    });
-    const data = await res.json();
-    return data;
-  };
+    const submitForm = () => {
+        trpc.useMutation([
+          "example.submitForm",
+          {
+            firstName,
+            lastName,
+            postcode,
+            email,
+            instagramName,
+            carMake,
+            carModel,
+            engineMods,
+            suspensionMods,
+            exteriorMods,
+            interiorMods,
+            linkToPhotos,
+            photogUsername,
+          },
+        ],);
+    } 
+
   return (
     <div className="mx-auto flex flex-col items-center justify-center min-h-screen w-full bg-black text-white">
       <div className="flex flex-col w-[50%] justify-center items-center ">
@@ -48,8 +50,8 @@ const Form = () => {
             </label>
             <input
               type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               className="w-[85%] text-black"
             />
           </div>
@@ -112,11 +114,11 @@ const Form = () => {
         <label className="p-2" htmlFor="">
           Link to HD Photos*
         </label>
-        <input type="text" value={photosLink} onChange={(e) => setPhotosLink(e.target.value)} />
+        <input type="text" value={linkToPhotos} onChange={(e) => setLinkToPhotos(e.target.value)} />
         <label className="p-2" htmlFor="">
           Photographer Instagram Username*
         </label>
-        <input type="text" value={photogUserName} onChange={(e) => setPhotogUsername(e.target.value)} />
+        <input type="text" value={photogUsername} onChange={(e) => setPhotogUsername(e.target.value)} />
         <input type="file" />
         <div className="p-2" />
         <button className="bg-white text-black w-[25%]" onClick={submitForm}>

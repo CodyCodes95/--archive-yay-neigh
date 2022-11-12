@@ -62,3 +62,22 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model Submission {
+    id            String   @id @default(cuid())
+    firstName     String
+    lastName      String
+    email         String
+    postCode      String
+    instagramName String
+    carMake       String
+    carModel      String
+    suspension String
+    exteriorMods String
+    interiorMods String
+    engineMods String
+    wheels String
+    linkToPhotos String
+    photogUsername String
+    createdAt     DateTime @default(now())
+}

@@ -10,12 +10,10 @@ import Form from "../components/Form";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
-  const session = useSession();
-
+  const secret = trpc.useQuery(["example.getAll"]);
 
   return (
     <>
-
       <div className="min-h-screen w-full bg-black text-white">
         <main className="mx-auto flex flex-col items-center justify-center">
           <div className="mt-10">
